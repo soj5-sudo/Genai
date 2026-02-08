@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Fitness | Build Your Personalized Fitness Plan</title>
+    <meta name="description"
+        content="Create customized workout and meal plans based on your personal goals, dietary preferences, and lifestyle with AI Fitness Blueprint.">
+    <link rel="icon" type="image/png" href="http://www.w3.org/2000/svg"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Liquid Backdrop -->
+    <div class="liquid-backdrop">
+        <div class="liquid-blob blob-1"></div>
+        <div class="liquid-blob blob-2"></div>
+        <div class="liquid-blob blob-3"></div>
+        <div class="liquid-blob blob-4"></div>
+    </div>
+
+    <!-- Interactive Cursor Blob -->
+    <div class="cursor-blob" id="cursorBlob"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="16" width="8" height="8" rx="2" fill="currentColor" />
+                        <rect x="30" y="16" width="8" height="8" rx="2" fill="currentColor" />
+                        <rect x="12" y="14" width="16" height="12" rx="2" fill="currentColor" />
+                        <rect x="8" y="18" width="6" height="4" rx="1" fill="currentColor" />
+                        <rect x="26" y="18" width="6" height="4" rx="1" fill="currentColor" />
+                    </svg>
+                </div>
+                <span class="logo-text">AI Fitness</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">About</a>
+                <div class="nav-link-wrapper">
+                    <a href="#" class="nav-link">Contact</a>
+                    <div class="contact-dropdown">
+                        <div class="contact-item">
+                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                            </svg>
+                            <a href="mailto:soj5@cornell.edu">soj5@cornell.edu</a>
+                        </div>
+                        <div class="contact-item">
+                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                            </svg>
+                            <a href="tel:607-262-9989">607-262-9989</a>
+                        </div>
+                        <div class="contact-item">
+                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm1.336 9.763H3.667v-8.59h2.674v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" />
+                            </svg>
+                            <a href="https://www.linkedin.com/in/soham-jariwala-18297520a" target="_blank">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary nav-cta" id="getStartedBtn">Get Started</button>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#" class="nav-link">Home</a>
+        <a href="#features" class="nav-link">About</a>
+        <div class="mobile-contact">
+            <p class="mobile-contact-title">Contact Us</p>
+            <a href="mailto:soj5@cornell.edu">📧 soj5@cornell.edu</a>
+            <a href="tel:607-262-9989">📱 607-262-9989</a>
+            <a href="https://www.linkedin.com/in/soham-jariwala-18297520a" target="_blank">💼 LinkedIn</a>
+        </div>
+        <button class="btn btn-primary" id="getStartedBtnMobile">Get Started</button>
+    </div>
+
+    <!-- Name Modal -->
+    <div class="modal-overlay" id="nameModal">
+        <div class="modal">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-icon">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="24" cy="16" r="8" fill="currentColor" />
+                    <path d="M8 40c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="currentColor" stroke-width="3"
+                        stroke-linecap="round" />
+                </svg>
+            </div>
+            <h2 class="modal-title">Welcome to AI Fitness</h2>
+            <p class="modal-subtitle">Let's personalize your experience and send you a welcome email!</p>
+            <div class="modal-input-group">
+                <input type="text" id="userName" placeholder="Enter your name" class="modal-input" autofocus>
+            </div>
+            <div class="modal-input-group">
+                <input type="email" id="userEmail" placeholder="Enter your email" class="modal-input" required>
+            </div>
+            <div class="modal-input-group">
+                <input type="tel" id="userPhone" placeholder="Enter your phone number" class="modal-input" required>
+            </div>
+            <button class="btn btn-cta modal-btn" id="startJourneyBtn">
+                <span>Start My Journey</span>
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+            <div id="emailStatus" class="email-status" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1 class="hero-title">Build Your Personalized Fitness Plan</h1>
+            <p class="hero-subtitle">Achieve your dream body with a customized workout and meal plan tailored to your
+                needs, lifestyle, and personal goals.</p>
+            <p class="welcome-message" id="welcomeMessage"></p>
+        </div>
+    </section>
+
+    <!-- Input Cards Section -->
+    <section class="input-section">
+        <div class="cards-container">
+            <!-- User Info Card -->
+            <div class="card user-info-card">
+                <h3 class="card-title">Your Info</h3>
+                <div class="input-group">
+                    <label for="height">Height</label>
+                    <input type="text" id="height" placeholder="e.g. 5'9&quot;" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="weight">Weight</label>
+                    <input type="text" id="weight" placeholder="e.g. 170 lbs" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" placeholder="e.g. 28" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="activity">Activity Level</label>
+                    <select id="activity" class="input-field">
+                        <option value="">Select level</option>
+                        <option value="sedentary">Sedentary</option>
+                        <option value="light">Lightly Active</option>
+                        <option value="moderate">Moderately Active</option>
+                        <option value="very">Very Active</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Goal Image Card -->
+            <div class="card goal-image-card">
+                <h3 class="card-title">Your Goal Image</h3>
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-placeholder" id="uploadPlaceholder">
+                        <div class="upload-icon">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 8L24 32M24 8L16 16M24 8L32 16" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M8 32V36C8 38.2091 9.79086 40 12 40H36C38.2091 40 40 38.2091 40 36V32"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <p class="upload-text">Upload Your Inspiration Photo</p>
+                        <p class="upload-hint">Drag & drop or click to browse</p>
+                    </div>
+                    <img id="imagePreview" class="image-preview" alt="Goal preview">
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                </div>
+                <button class="btn btn-secondary upload-btn" id="uploadBtn">
+                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 4V16M10 4L6 8M10 4L14 8" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Upload Image
+                </button>
+                <div class="goal-override" id="goalOverride" style="display: none; margin-top: 1rem;">
+                    <label
+                        style="font-size: 0.875rem; color: var(--text-secondary); display: block; margin-bottom: 0.5rem;">Override
+                        detected goal:</label>
+                    <select id="manualGoal" class="input-field small" style="margin-top: 0;">
+                        <option value="">Use AI Detection</option>
+                        <option value="bulk">💪 Bulk (Muscle Building)</option>
+                        <option value="cut">🔥 Cut (Fat Loss)</option>
+                        <option value="tone">✨ Tone (General Fitness)</option>
+                        <option value="maintain">⚖️ Maintain (Balanced)</option>
+                    </select>
+                </div>
+                <p class="upload-note">Used only as visual guidance — your privacy is protected</p>
+            </div>
+
+            <!-- Restrictions Card -->
+            <div class="card restrictions-card">
+                <h3 class="card-title">Your Restrictions</h3>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="dietary">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">Dietary Needs</span>
+                    </label>
+                    <div class="checkbox-details" id="dietaryDetails">
+                        <input type="text" placeholder="e.g. Vegan, Keto, Low-carb" class="input-field small">
+                    </div>
+                </div>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="allergies">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">Allergies</span>
+                    </label>
+                    <div class="checkbox-details" id="allergiesDetails">
+                        <input type="text" placeholder="e.g. Nuts, Dairy, Gluten" class="input-field small">
+                    </div>
+                </div>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="religious">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">Religious Preferences</span>
+                    </label>
+                    <div class="checkbox-details" id="religiousDetails">
+                        <input type="text" placeholder="e.g. Halal, Kosher" class="input-field small">
+                    </div>
+                </div>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="injuries">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">Physical Limitations</span>
+                    </label>
+                    <div class="checkbox-details" id="injuriesDetails">
+                        <input type="text" placeholder="e.g. Back injury, Knee pain" class="input-field small">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="cta-container">
+            <button class="btn btn-cta" id="buildPlanBtn">
+                <span>Build My Plan</span>
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Plan Results (Hidden by default) -->
+        <div class="plan-results" id="planResults">
+            <h2 class="plan-title">Your Personalized Plan</h2>
+            <p class="plan-subtitle" id="planGoalType">Customized for muscle building</p>
+
+            <div class="plan-grid">
+                <div class="plan-column">
+                    <div class="plan-column-header">
+                        <span class="plan-icon">🌅</span>
+                        <span>Morning</span>
+                    </div>
+                    <div class="plan-card exercise">
+                        <span class="card-label">Exercise</span>
+                        <p id="morningExercise">Loading...</p>
+                        <button class="video-link-btn" id="morningExerciseVideo" style="display: none;">
+                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
+                            </svg>
+                            Watch Form Tutorial
+                        </button>
+                    </div>
+                    <div class="plan-card food">
+                        <span class="card-label">Meal</span>
+                        <p id="morningFood">Loading...</p>
+                        <div class="macros-container" id="morningMacros" style="display: none;"></div>
+                    </div>
+                    <div class="plan-card meditation">
+                        <span class="card-label">Mindfulness</span>
+                        <p id="morningMeditation">Loading...</p>
+                    </div>
+                </div>
+
+                <div class="plan-column">
+                    <div class="plan-column-header">
+                        <span class="plan-icon">☀️</span>
+                        <span>Afternoon</span>
+                    </div>
+                    <div class="plan-card exercise">
+                        <span class="card-label">Exercise</span>
+                        <p id="afternoonExercise">Loading...</p>
+                        <button class="video-link-btn" id="afternoonExerciseVideo" style="display: none;">
+                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
+                            </svg>
+                            Watch Form Tutorial
+                        </button>
+                    </div>
+                    <div class="plan-card food">
+                        <span class="card-label">Meal</span>
+                        <p id="afternoonFood">Loading...</p>
+                        <div class="macros-container" id="afternoonMacros" style="display: none;"></div>
+                    </div>
+                    <div class="plan-card meditation">
+                        <span class="card-label">Mindfulness</span>
+                        <p id="afternoonMeditation">Loading...</p>
+                    </div>
+                </div>
+
+                <div class="plan-column">
+                    <div class="plan-column-header">
+                        <span class="plan-icon">🌙</span>
+                        <span>Evening</span>
+                    </div>
+                    <div class="plan-card exercise">
+                        <span class="card-label">Exercise</span>
+                        <p id="eveningExercise">Loading...</p>
+                        <button class="video-link-btn" id="eveningExerciseVideo" style="display: none;">
+                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
+                            </svg>
+                            Watch Form Tutorial
+                        </button>
+                    </div>
+                    <div class="plan-card food">
+                        <span class="card-label">Meal</span>
+                        <p id="eveningFood">Loading...</p>
+                        <div class="macros-container" id="eveningMacros" style="display: none;"></div>
+                    </div>
+                    <div class="plan-card meditation">
+                        <span class="card-label">Mindfulness</span>
+                        <p id="eveningMeditation">Loading...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-container" style="margin-top: 2rem;">
+                <button class="btn btn-secondary email-plan-btn" id="emailPlanBtn"
+                    style="display: none; width: 100%; max-width: 400px;">
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20" style="margin-right: 8px;">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                    Email This Plan to Me
+                </button>
+            </div>
+            <p class="plan-disclaimer">This plan is generated based on your inputs</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="feature-card">
+                <div class="feature-icon workout-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="4" y="20" width="8" height="8" rx="2" fill="currentColor" />
+                        <rect x="36" y="20" width="8" height="8" rx="2" fill="currentColor" />
+                        <rect x="14" y="18" width="20" height="12" rx="2" fill="currentColor" />
+                        <rect x="10" y="22" width="6" height="4" rx="1" fill="currentColor" />
+                        <rect x="32" y="22" width="6" height="4" rx="1" fill="currentColor" />
+                    </svg>
+                </div>
+                <h4 class="feature-title">Custom Workout Routine</h4>
+                <p class="feature-desc">Exercises tailored to your goals, fitness level, and available equipment.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon meal-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="28" r="14" stroke="currentColor" stroke-width="2" />
+                        <path d="M24 14V8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <path d="M18 22C18 22 20 26 24 26C28 26 30 22 30 22" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" />
+                        <circle cx="20" cy="28" r="3" fill="currentColor" />
+                        <circle cx="28" cy="30" r="2" fill="currentColor" />
+                    </svg>
+                </div>
+                <h4 class="feature-title">Personalized Meal Plan</h4>
+                <p class="feature-desc">Meals that fit your lifestyle, preferences, and nutritional requirements.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon adapt-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 6L28 18H40L30 26L34 38L24 30L14 38L18 26L8 18H20L24 6Z" fill="currentColor"
+                            opacity="0.3" />
+                        <path d="M24 10L27 18H35L29 24L32 32L24 26L16 32L19 24L13 18H21L24 10Z" fill="currentColor" />
+                    </svg>
+                </div>
+                <h4 class="feature-title">Adapted to Your Needs</h4>
+                <p class="feature-desc">Adjusts for allergies, religious restrictions, and physical limitations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="16" width="8" height="8" rx="2" fill="currentColor" />
+                        <rect x="30" y="16" width="8" height="8" rx="2" fill="currentColor" />
+                        <rect x="12" y="14" width="16" height="12" rx="2" fill="currentColor" />
+                        <rect x="8" y="18" width="6" height="4" rx="1" fill="currentColor" />
+                        <rect x="26" y="18" width="6" height="4" rx="1" fill="currentColor" />
+                    </svg>
+                </div>
+                <span>AI Fitness</span>
+            </div>
+            <div class="footer-contact">
+                <a href="mailto:soj5@cornell.edu"><span class="__cf_email__"
+                        data-cfemail="0c7f6366394c6f637e6269606022696879">soj5@cornell.edu</span></a>
+                <span class="footer-divider">|</span>
+                <a href="tel:607-262-9989">607-262-9989</a>
+                <span class="footer-divider">|</span>
+                <a href="https://www.linkedin.com/in/soham-jariwala-18297520a" target="_blank" class="footer-linkedin">
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+                        <path
+                            d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm1.336 9.763H3.667v-8.59h2.674v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" />
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+            <p class="footer-copy">&copy; 2026 AI Fitness. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
